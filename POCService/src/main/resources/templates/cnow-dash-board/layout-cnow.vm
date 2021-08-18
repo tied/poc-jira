@@ -1,0 +1,22 @@
+#disable_html_escaping()
+#set($resourceManager = $action.getResourceManager())
+
+$resourceManager.requireResource("com.atlassian.jira.jira-projects-issue-navigator:application")
+$resourceManager.requireResource("com.cmcglobal.jiraplugin.poc.POCService:cnow-pack-js")
+
+<html>
+<head>
+    <title>C-NOW Dashboard</title>
+    <meta name="decorator" content="atl.error" />
+    <meta name="basePath" content="$action.getUrlPath()" />
+    <meta name="cnowBasePath" content="$action.getUrlPath()/secure/CNOWDashboard.jspa" />
+    <meta name="cnowProjectIdDefault" content="$action.getProjectId()" />
+    <script>
+        localStorage.setItem("basePath",AJS.contextPath());
+        localStorage.setItem("cnowProjectIdDefault","$action.getProjectId()");
+    </script>
+</head>
+<body id="jira" class="page-type-split page-issue-navigator aui-page-sidebar aui-sidebar-collapsed">
+<div id="root"></div>
+</body>
+</html>

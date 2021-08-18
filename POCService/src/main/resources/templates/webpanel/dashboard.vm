@@ -1,0 +1,65 @@
+$resourceManager.requireResource("com.atlassian.auiplugin:aui-page-header")
+$resourceManager.requireResource("com.atlassian.auiplugin:aui-dropdown2")
+$resourceManager.requireResource("com.atlassian.auiplugin:aui-dialog2")
+$resourceManager.requireResource("com.atlassian.auiplugin:ajs")
+$resourceManager.requireResource("com.atlassian.auiplugin:aui-tabs")
+$resourceManager.requireResource("com.atlassian.auiplugin:aui-form-validation")
+$resourceManager.requireResource("jira.webresources:frother-checkbox-multiselect")
+$resourceManager.requireResource("com.atlassian.auiplugin:aui-experimental-progress-indicator")
+$resourceManager.requireResource("com.cmcglobal.jiraplugin.poc.POCService:cnow-datatables")
+$resourceManager.requireResource("com.cmcglobal.jiraplugin.poc.POCService:dash-board-resources")
+
+<section class="aui-page-panel-content page-list crm-page-list">
+    <div class="contained-content">
+        <header class="saved-search-selector">
+            <div class="saved-search-operations operations">
+            </div>
+            <span id="throbber-space" class="icon throbber"></span>
+            <div id="search-header-view">
+                <div class="header-section-primary">
+                    <ul class="filter-operations">
+                        #foreach($issueType in $parentTasks)
+                            <li>
+                                <button onclick="handleOpenCreate($issueType.getId(),$projectId,$issueType.isSubTask())"
+                                        class="aui-button save-as-new-filter">$issueType.getName()
+                                </button>
+                            </li>
+                        #end
+                        <br/>
+                        #foreach($issueType in $parentTasks)
+                            <li>
+                                <a href="$action.getUrlPath()/CreateIssueDetails!init.jspa?pid=$projectId&issuetype=$issueType.getId()&summary=Auto+Fill+Value">$issueType.getName()</a>
+                            </li>
+                        #end
+                    </ul>
+                    <ul class="filter-operations list-quick-filter">
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <table id="example" class="display" style="width:100%;margin-top:30px">
+            <thead>
+            <tr>
+                <th>Action</th>
+                <th>Key</th>
+                <th>Summary</th>
+                <th>Description</th>
+            </tr>
+            </thead>
+            <tbody>
+                #foreach($allocate in $allocateIssues)
+                <tr>
+                    <th>
+                        <input type="checkbox" onchange="handleChooseAllocate($allocate.get("id"))"/>
+                    </th>
+                    <td>$allocate.get("key")</td>
+                    <td>$allocate.get("summary")</td>
+                    <td>$allocate.get("description")</td>
+                </tr>
+                #end
+            </tfoot>
+        </table>
+        <!-- /.navigator-group -->
+    </div>
+    <!-- /.contained-content -->
+</section>

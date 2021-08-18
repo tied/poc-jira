@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<atlassian-plugin key="${atlassian.plugin.key}" name="${project.name}" plugins-version="2">
+    <plugin-info>
+        <description>${project.description}</description>
+        <version>${project.version}</version>
+        <vendor name="${project.organization.name}" url="${project.organization.url}"/>
+        <param name="plugin-icon">images/pluginIcon.png</param>
+        <param name="plugin-logo">images/pluginLogo.png</param>
+    </plugin-info>
+    <!-- add our i18n resource -->
+    <resource type="i18n" name="i18n" location="POCService"/>
+    <web-resource key="cnow-datatables" name="DataTables Web Resources">
+        <resource type="download" name="images/sort_asc.png" location="/images/sort_asc.png"/>
+        <resource type="download" name="images/sort_asc_disabled.png" location="/images/sort_asc_disabled.png"/>
+        <resource type="download" name="images/sort_both.png" location="/images/sort_both.png"/>
+        <resource type="download" name="images/sort_desc.png" location="/images/sort_desc.png"/>
+        <resource type="download" name="images/sort_desc_disabled.png" location="/images/sort_desc_disabled.png"/>
+        <resource type="download" name="FontAwesome.otf" location="/fonts/FontAwesome.otf"/>
+        <resource type="download" name="fontawesome-webfont.eot" location="/fonts/fontawesome-webfont.eot"/>
+        <resource type="download" name="fontawesome-webfont.svg" location="/fonts/fontawesome-webfont.svg"/>
+        <resource type="download" name="fontawesome-webfont.ttf" location="/fonts/fontawesome-webfont.ttf"/>
+        <resource type="download" name="fontawesome-webfont.woff" location="/fonts/fontawesome-webfont.woff"/>
+        <resource type="download" name="fontawesome-webfont.woff2" location="/fonts/fontawesome-webfont.woff2"/>
+        <resource type="download" name="common.scss" location="/css/datatables/common.scss"/>
+        <resource type="download" name="mixins.scss" location="/css/datatables/mixins.scss"/>
+        <resource type="download" name="font-awesome.min.css" location="/css/datatables/font-awesome.css"/>
+        <resource type="download" name="datatables.css" location="/css/datatables/datatables.css"/>
+        <resource type="download" name="buttons.dataTables.css" location="/css/datatables/buttons.dataTables.css"/>
+        <resource type="download" name="editor.dataTables.css" location="/css/datatables/editor.dataTables.css"/>
+        <resource type="download" name="fixedColumns.dataTables.css"
+                  location="/css/datatables/fixedColumns.dataTables.css"/>
+        <resource type="download" name="keyTable.dataTables.css" location="/css/datatables/keyTable.dataTables.css"/>
+        <resource type="download" name="responsive.dataTables.css"
+                  location="/css/datatables/responsive.dataTables.css"/>
+        <resource type="download" name="scroller.dataTables.css" location="/css/datatables/scroller.dataTables.css"/>
+        <resource type="download" name="jquery.dataTables.js" location="/js/datatables/jquery.dataTables.js"/>
+        <resource type="download" name="dataTables.editor.js" location="/js/datatables/dataTables.editor.js"/>
+        <resource type="download" name="dataTables.buttons.js" location="/js/datatables/dataTables.buttons.js"/>
+        <resource type="download" name="dataTables.select.min.js" location="/js/datatables/dataTables.select.min.js"/>
+        <resource type="download" name="dataTables.fixedColumns.js"
+                  location="/js/datatables/dataTables.fixedColumns.js"/>
+        <resource type="download" name="dataTables.keyTable.js" location="/js/datatables/dataTables.keyTable.js"/>
+        <resource type="download" name="dataTables.responsive.js" location="/js/datatables/dataTables.responsive.js"/>
+        <resource type="download" name="dataTables.scroller.js" location="/js/datatables/dataTables.scroller.js"/>
+        <resource type="download" name="dataTables.scrollResize.min.js"
+                  location="/js/datatables/dataTables.scrollResize.min.js"/>
+        <resource type="download" name="javascriptapi.js" location="/js/javascriptapi.js"/>
+        <context>cnow.dashboard</context>
+        <context>atl.general</context>
+    </web-resource>
+    <!-- add our web resources -->
+    <web-resource key="cnow-pack-js" name="Javascript minified">
+        <resource type="download" name="cnow.pack.js" location="/client/cnow.pack.js"/>
+    </web-resource>
+    <web-resource key="cnow-resources-index" name="CRM Resources Index">
+        <dependency>com.atlassian.auiplugin:ajs</dependency>
+        <resource type="download" name="POCService.js" location="/js/POCService.js"/>
+        <resource type="download" name="POCService.css" location="/css/POCService.css"/>
+        <context>crm.dashboard</context>
+        <context>atl.general</context>
+    </web-resource>
+    <workflow-function key=".policy-post-function" name="policy Post Function" i18n-name-key="policy-post-function.name"
+                       class="com.cmcglobal.jiraplugin.poc.postfunction.PolicyPostFunctionFactory">
+        <description key="policy-post-function.description">The policy Post Function Plugin</description>
+        <function-class>com.cmcglobal.jiraplugin.poc.postfunction.PolicyPostFunction</function-class>
+        <resource type="velocity" name="view" location="templates/postfunctions/policy-post-function.vm"/>
+        <resource type="velocity" name="input-parameters"
+                  location="templates/postfunctions/policy-post-function-input.vm"/>
+        <resource type="velocity" name="edit-parameters"
+                  location="templates/postfunctions/policy-post-function-input.vm"/>
+    </workflow-function>
+    <workflow-function key=".unabvailable-property-post-function" name="Unabvailable Property Post Function"
+                       i18n-name-key="unabvailable-property-post-function.name"
+                       class="com.cmcglobal.jiraplugin.poc.postfunction.UnavailablePropertyPostFunctionFactory">
+        <description key="unabvailable-property-post-function.description">The Unabvailable Property Post Function
+            Plugin
+        </description>
+        <function-class>com.cmcglobal.jiraplugin.poc.postfunction.UnavailablePropertyPostFunction</function-class>
+        <resource type="velocity" name="view"
+                  location="templates/postfunctions/unabvailable-property-post-function.vm"/>
+        <resource type="velocity" name="input-parameters"
+                  location="templates/postfunctions/unabvailable-property-post-function-input.vm"/>
+        <resource type="velocity" name="edit-parameters"
+                  location="templates/postfunctions/unabvailable-property-post-function-input.vm"/>
+    </workflow-function>
+    <workflow-function key=".available-property-post-function" name="Available Property Post Function"
+                       i18n-name-key="available-property-post-function.name"
+                       class="com.cmcglobal.jiraplugin.poc.postfunction.AvailablePropertyPostFunctionFactory">
+        <description key="available-property-post-function.description">The Available Property Post Function Plugin
+        </description>
+        <function-class>com.cmcglobal.jiraplugin.poc.postfunction.AvailablePropertyPostFunction</function-class>
+        <resource type="velocity" name="view" location="templates/postfunctions/available-property-post-function.vm"/>
+        <resource type="velocity" name="input-parameters"
+                  location="templates/postfunctions/available-property-post-function-input.vm"/>
+        <resource type="velocity" name="edit-parameters"
+                  location="templates/postfunctions/available-property-post-function-input.vm"/>
+    </workflow-function>
+    <workflow-function key=".done-subtask-post-function" name="Done Subtask Post Function"
+                       i18n-name-key="done-subtask-post-function.name"
+                       class="com.cmcglobal.jiraplugin.poc.postfunction.DoneSubtaskPostFunctionFactory">
+        <description key="done-subtask-post-function.description">The Done Subtask Post Function Plugin</description>
+        <function-class>com.cmcglobal.jiraplugin.poc.postfunction.DoneSubtaskPostFunction</function-class>
+        <resource type="velocity" name="view" location="templates/postfunctions/done-subtask-post-function.vm"/>
+        <resource type="velocity" name="input-parameters"
+                  location="templates/postfunctions/done-subtask-post-function-input.vm"/>
+        <resource type="velocity" name="edit-parameters"
+                  location="templates/postfunctions/done-subtask-post-function-input.vm"/>
+    </workflow-function>
+    <workflow-function key=".reject-subtask-post-function" name="Reject Subtask Post Function"
+                       i18n-name-key="reject-subtask-post-function.name"
+                       class="com.cmcglobal.jiraplugin.poc.postfunction.RejectSubtaskPostFunctionFactory">
+        <description key="reject-subtask-post-function.description">The Reject Subtask Post Function Plugin
+        </description>
+        <function-class>com.cmcglobal.jiraplugin.poc.postfunction.RejectSubtaskPostFunction</function-class>
+        <resource type="velocity" name="view" location="templates/postfunctions/reject-subtask-post-function.vm"/>
+        <resource type="velocity" name="input-parameters"
+                  location="templates/postfunctions/reject-subtask-post-function-input.vm"/>
+        <resource type="velocity" name="edit-parameters"
+                  location="templates/postfunctions/reject-subtask-post-function-input.vm"/>
+    </workflow-function>
+    <workflow-function key=".change-assignee-post-function" name="Change Assignee Post Function"
+                       i18n-name-key="change-assignee-post-function.name"
+                       class="com.cmcglobal.jiraplugin.poc.postfunction.ChangeAssigneePostFunctionFactory">
+        <description key="change-assignee-post-function.description">The Change Assignee Post Function Plugin
+        </description>
+        <function-class>com.cmcglobal.jiraplugin.poc.postfunction.ChangeAssigneePostFunction</function-class>
+        <resource type="velocity" name="view" location="templates/postfunctions/change-assignee-post-function.vm"/>
+        <resource type="velocity" name="input-parameters"
+                  location="templates/postfunctions/change-assignee-post-function-input.vm"/>
+        <resource type="velocity" name="edit-parameters"
+                  location="templates/postfunctions/change-assignee-post-function-input.vm"/>
+    </workflow-function>
+    <web-item name="CNOWDashBoardAction" i18n-name-key="cnow-dash-board.name" key="cnow-dash-board-item"
+              section="system.top.navigation.bar" weight="1000">
+        <description key="cnow-dash-board.description">The CNOW DashBoard Plugin</description>
+        <label key="cnow-dash-board.label">C-NOW</label>
+        <link linkId="cnow-dash-board-link">/secure/CNOWDashboard.jspa</link>
+        <condition class="com.cmcglobal.jiraplugin.poc.jira.webwork.WebItemCondition"/>
+    </web-item>
+    <webwork1 key="cnow-dash-board" name="Quick Create User Issue" class="java.lang.Object">
+        <description key="cnow-dash-board.description">The CNOWDashBoard Plugin</description>
+        <actions>
+            <action name="com.cmcglobal.jiraplugin.poc.jira.webwork.CNOWDashBoardAction" alias="CNOWDashboard">
+                <view name="view">/templates/cnow-dash-board/index2.vm</view>
+            </action>
+        </actions>
+    </webwork1>
+    <web-resource key="dash-board-resources" name="DashBoard">
+        <dependency>com.atlassian.auiplugin:ajs</dependency>
+        <resource type="download" name="dashboard.js" location="/js/dashboard.js"/>
+        <resource type="download" name="dashboard.css" location="/css/dashboard.css"/>
+    </web-resource>
+</atlassian-plugin>

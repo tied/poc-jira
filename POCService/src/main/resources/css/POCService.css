@@ -1,0 +1,161 @@
+#content .aui-page-panel-content {
+    padding: 0px !important;
+}
+
+.crm-page-list #search-header-view ul.filter-operations {
+    list-style: none;
+}
+
+.crm-page-list #search-header-view ul.filter-operations > li {
+    display: inline-block;
+}
+
+.crm-page-list .search-criteria-extended .criteria-selector.aui-button.aui-button-subtle {
+    padding-right: 25px !important;
+}
+.icon-contact{
+    width: 15px !important;
+}
+.icon-pipeline{
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0 auto;
+    height: 100%;
+}
+.icon-planning-revenue{
+}
+.icon-planning-sale{
+}
+.icon-sale-report{
+}
+.icon-import-data{
+    width: 16px !important;
+}
+.div-icon{
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0 auto;
+    height: 100%;
+}
+.border-icon{
+    /*border-top: 1px solid #0747a6;*/
+    width: 96%;
+    margin-left: 2%;
+    height: 1px;
+    background-color: #0747a6;
+}
+.div-icon-pipeline{
+    margin-left: 3px !important;
+}
+.icon-contract{
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0 auto;
+    width: 24px;
+    height: 100%;
+}
+.icon-payment{
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+}
+.icon-invoice{
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+}
+.icon-exchange-rate{
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+}
+.icon-workOrder{
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+
+
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-height: 400px;
+    max-width: 800px;
+    overflow: auto;
+
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+/* Dành cho điện thoại */
+@media only screen and (min-width: 320px) {
+    /* Modal Content */
+    .modal-content {
+        max-height: 150px;
+        max-width: 400px;
+    }
+}
+
+/* Dành cho máy tính bảng chiều dọc */
+@media only screen and (min-width: 600px) {
+    .modal-content {
+        max-height: 200px;
+        max-width: 650px;
+    }
+}
+
+/* Dành cho máy tính bảng chiều ngang */
+@media only screen and (min-width: 1024px) {
+    .modal-content {
+        max-height: 300px;
+        max-width: 800px;
+    }
+}
+
+/* Dành cho màn hình desktop */
+@media only screen and (min-width: 1280px) {
+    .modal-content {
+        max-height: 400px;
+        max-width: 800px;
+    }
+}

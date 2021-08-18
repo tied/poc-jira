@@ -1,0 +1,11 @@
+<section class="aui-page-panel-content lowerContent">
+    <div id="error-state">
+        <span class="error-type"></span>
+        <h1>Oops, you&#39;ve found a dead link.</h1>
+        <ul>
+            <li>Go back to the <a href="javascript:window.history.back()">previous page</a></li>
+            <li>Go to the <a href="/jira/secure/MyJiraHome.jspa">Home Page</a></li>
+        </ul>
+    </div>
+</section>
+<!-- .aui-page-panel-content -->

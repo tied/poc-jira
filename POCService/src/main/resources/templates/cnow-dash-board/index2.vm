@@ -1,0 +1,109 @@
+#disable_html_escaping()
+#set($resourceManager = $action.getResourceManager())
+#set($contentBody = $action.getContentBody())
+$resourceManager.requireResource("com.atlassian.jira.jira-quick-edit-plugin:quick-form")
+$resourceManager.requireResource("com.atlassian.jira.jira-issue-nav-components:simpleissuelist")
+$resourceManager.requireResource("com.atlassian.auiplugin:aui-sidebar")
+$resourceManager.requireResource("com.atlassian.auiplugin:ajs")
+$resourceManager.requireResource("com.atlassian.auiplugin:aui-sidebar")
+$resourceManager.requireResource("jira.webresources:jira-issuenavigator")
+$resourceManager.requireResource("jira.webresources:jira-issuenavigator")
+$resourceManager.requireResource("com.atlassian.auiplugin:internal-jquery-ui-partial")
+$resourceManager.requireResource("com.atlassian.jira.jira-projects-issue-navigator:application")
+$resourceManager.requireResource("com.atlassian.jira.jira-projects-plugin:sidebar-api")
+$resourceManager.requireResource("com.atlassian.jira.jira-issue-navigator-components:search-data")
+$resourceManager.requireResource("jira.webresources:util")
+$resourceManager.requireResource("com.atlassian.jira.jira-issue-nav-components:simpleissuelist")
+$resourceManager.requireResource("com.atlassian.jira.jira-issue-nav-components:detailslayout")
+$resourceManager.requireResource("com.atlassian.jira.jira-issue-nav-plugin:issues-api")
+$resourceManager.requireResource("com.atlassian.jira.jira-issue-nav-components:orderby")
+$resourceManager.requireResource("jira.webresources:key-commands")
+$resourceManager.requireResource("jira.webresources:jira-issuetable")
+$resourceManager.requireResource("jira.webresources:jira-formatter")
+$resourceManager.requireResource("jira.webresources:jira-key-code")
+$resourceManager.requireResource("com.atlassian.auiplugin:aui-inline-dialog2")
+$resourceManager.requireResource("jira.webresources:page-loading-indicator")
+$resourceManager.requireResourcesForContext("jira.view.issue")
+$resourceManager.requireResourcesForContext("jira.create.issue")
+$resourceManager.requireResourcesForContext("jira.navigator.simple")
+$resourceManager.requireResourcesForContext("jira.navigator.advanced")
+$resourceManager.requireResourcesForContext("jira.browse")
+
+$action.getResourceManager().requireResource("com.cmcglobal.jiraplugin.poc.POCService:cnow-resources-index")
+<html>
+<head>
+    <title>$action.getTitle()</title>
+    <meta name="decorator" content="atl.general"/>
+</head>
+<body id="jira" class="page-type-split page-issue-navigator aui-page-sidebar aui-sidebar-collapsed">
+<div id="page">
+    <section id="content" role="main">
+        <div class="aui-sidebar projects-sidebar fade-in" aria-expanded="false">
+            <div class="aui-sidebar-wrapper">
+                <div class="aui-sidebar-body">
+                    <header class="aui-page-header">
+                        <div class="aui-page-header-inner">
+                            <div class="aui-page-header-image">
+                                <a href="$action.getUrlPath()/secure/CNOWDashboard.jspa" title="CRM"
+                                   class="jira-project-avatar">
+                                    <span class="aui-avatar aui-avatar-large aui-avatar-project">
+                                        <span class="aui-avatar-inner">
+                                            <img src="$action.getUrlPath()/secure/projectavatar?pid=$action.getProjectId()&avatarId=10203"
+                                                 alt="C-NOW">
+                                        </span>
+                                    </span>
+                                </a>
+                            </div><!-- .aui-page-header-image -->
+                            <div class="aui-page-header-main">
+                                <h1>
+                                    <div class="aui-group aui-group-split">
+                                        <div class="aui-item project-title">
+                                            <a href="$action.getUrlPath()/secure/CNOWDashboard.jspa"
+                                               title="C-NOW">C-NOW</a>
+                                        </div>
+                                    </div>
+                                </h1>
+                            </div><!-- .aui-page-header-main -->
+
+                            <div class="aui-page-header-main scopeFilterContainer">
+                            </div><!-- .aui-page-header-main -->
+
+                        </div><!-- .aui-page-header-inner -->
+                    </header><!-- .aui-page-header -->
+
+                    <nav class="aui-navgroup aui-navgroup-vertical">
+                        <div class="aui-navgroup-inner sidebar-content-container jira-navigation">
+                            <div class="aui-sidebar-group aui-sidebar-group-tier-one"
+                                 data-id="sidebar-navigation-panel">
+                                <ul class="aui-nav">
+                                    <li><a class="aui-nav-item"
+                                           href="$action.getUrlPath()/secure/CNOWDashboard.jspa?selectedItem=Dasboard"><span
+                                            class="aui-icon aui-icon aui-icon-large aui-iconfont-group"></span><span
+                                            class="aui-nav-item-label" title="Dashboard">Dashboard</span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+
+                <div class="aui-sidebar-footer">
+                    <a class="aui-button aui-button-subtle aui-sidebar-toggle aui-sidebar-footer-tipsy"
+                       data-tooltip="Expand sidebar" href="#">
+                        <span class="aui-icon aui-icon-small"></span>
+                    </a>
+                </div> <!-- /.aui-sidebar-footer -->
+            </div>
+        </div>
+
+        <div class="aui-page-panel">
+            <div class="aui-page-panel-inner">
+                $contentBody
+            </div><!-- .aui-page-panel-inner -->
+        </div><!-- .aui-page-panel -->
+        <div class="issue-navigator-init">
+            <!-- empty -->
+        </div>
+    </section>
+</div>
+</body>
+</html>

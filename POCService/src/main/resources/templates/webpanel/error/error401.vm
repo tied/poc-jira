@@ -1,0 +1,37 @@
+<style>
+    .aui-page-panel-inner {
+        background-color: #f4f5f7;
+    }
+    .aui-page-panel-inner .aui-page-panel-content {
+        border-spacing: 0;
+        display: table;
+        table-layout: fixed;
+        height: 300px !important;
+        width: 600px;
+        border: 1px solid rgb(223, 225, 230);
+        margin: 25px auto;
+        background-color: white;
+        text-align: center;
+        color: #7a869a;
+        font-size: 18px;
+        margin: 3em auto 2em;
+        text-align: center;
+    }
+    .projects-error-page-heading {
+        border-bottom: 1px solid #c1c7d0;
+        color: #172b4d;
+        font-size: 32px;
+        line-height: 3em;
+        margin-bottom: 1em;
+    }
+    .projects-error-page-content p {
+        margin: 1em 0;
+    }
+</style>
+
+<section class="aui-page-panel-content">
+    <h1 class="projects-error-page-heading">You can't view this page</h1>
+    <div class="projects-error-page-content">
+        <p>you must login to access this page</p>
+    </div>
+</section>
