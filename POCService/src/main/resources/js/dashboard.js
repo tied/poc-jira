@@ -4,8 +4,8 @@ function handleOpenCreate(issueTypeId, projectId, isSubtask) {
             pid: projectId, issueType: issueTypeId,
         }).asDialog({windowTitle: 'Create Issue'}).show();
         setTimeout(function () {
-            $('#summary').attr('value',  issueIds.toString())
-        }, 1000);
+            $('#summary').attr('value', issueIds.toString())
+        }, 1500);
     } else {
         JIRA.Forms.createSubtaskForm({
             pid: projectId, issueType: issueTypeId,

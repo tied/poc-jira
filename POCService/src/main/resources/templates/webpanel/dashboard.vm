@@ -26,11 +26,11 @@ $resourceManager.requireResource("com.cmcglobal.jiraplugin.poc.POCService:dash-b
                             </li>
                         #end
                         <br/>
-                        #foreach($issueType in $parentTasks)
+                        #*#foreach($issueType in $parentTasks)
                             <li>
                                 <a href="$action.getUrlPath()/CreateIssueDetails!init.jspa?pid=$projectId&issuetype=$issueType.getId()&summary=Auto+Fill+Value">$issueType.getName()</a>
                             </li>
-                        #end
+                        #end*#
                     </ul>
                     <ul class="filter-operations list-quick-filter">
                     </ul>

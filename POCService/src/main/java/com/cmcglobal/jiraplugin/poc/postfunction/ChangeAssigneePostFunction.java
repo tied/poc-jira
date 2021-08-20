@@ -80,7 +80,7 @@ public class ChangeAssigneePostFunction extends AbstractJiraFunctionProvider {
                     mutableIssue.setAssignee(ceoUser);
                     issueManager.updateIssue(admin, mutableIssue, EventDispatchOption.DO_NOT_DISPATCH, false);
                 }
-            } else if (issue.getIssueType().getName().equalsIgnoreCase("Shopping Subtask")) {
+            } else if (issue.getIssueType().getName().equalsIgnoreCase("Mua Sắm")) {
                 if (issue.getStatus().getName().equalsIgnoreCase("Quotation List") || issue.getStatus().getName().equalsIgnoreCase("Request Payment")) {
                     if (ceoUser == null)
                         throw new Exception("Not found CEO User");

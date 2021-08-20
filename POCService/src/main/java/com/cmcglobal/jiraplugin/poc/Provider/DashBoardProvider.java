@@ -56,7 +56,7 @@ public class DashBoardProvider {
         }
         for (Long id : poc2Ids) {
             Issue allocateIssue = issueManager.getIssueObject(id);
-            if (allocateIssue.getIssueType().getName().equalsIgnoreCase("Cấp Phát")) {
+            if (allocateIssue.getIssueType().getName().equalsIgnoreCase("Cấp Phát") && !allocateIssue.getIssueType().isSubTask() && allocateIssue.getStatus().getName().equalsIgnoreCase("Pending Shopping")) {
                 Map<String, Object> allocate = new HashMap<>();
                 allocate.put("id", allocateIssue.getId());
                 allocate.put("key", allocateIssue.getKey());
@@ -68,7 +68,7 @@ public class DashBoardProvider {
         List<Issue> subTasks = new ArrayList<>();
         List<IssueType> parentTasks = new ArrayList<>();
         for (IssueType issueType : collection) {
-            if (!issueType.isSubTask()) {
+            if (!issueType.isSubTask() && issueType.getName().equalsIgnoreCase(Constants2.shoppingIssueTypeName)) {
                 parentTasks.add(issueType);
             }
         }

@@ -89,11 +89,10 @@ public class WorkflowInstallation extends AbstractWorkflowInstallation {
 
         _workflowUtils.addWorkflowSchemeToProject(scheme, _projectInstallation.getListOfProjectCreated().get(Constants2.projectName));
 
-       /* _workflowUtils.addPostFunctionToTransition(allocateWF, "Create", "Pending TBP Approve", "com.cmcglobal.jiraplugin.poc.POCService.change-assignee-post-function", ChangeAssigneePostFunction.class, new HashMap<String, Object>() {{
+        _workflowUtils.addPostFunctionToTransition(allocateWF, "Create", "Pending TBP Approve", "com.cmcglobal.jiraplugin.poc.POCService.change-assignee-post-function", ChangeAssigneePostFunction.class, new HashMap<String, Object>() {{
             put("toStep", "Create");
         }});
         _workflowUtils.addPostFunctionToTransition(allocateWF, "Approve", "Policy", "com.cmcglobal.jiraplugin.poc.POCService.policy-post-function", PolicyPostFunction.class, new HashedMap<>());
-        _workflowUtils.addPostFunctionToTransition(allocateWF, "Unavailable", "Pending Shopping", "com.cmcglobal.jiraplugin.poc.POCService.unabvailable-property-post-function", UnavailablePropertyPostFunction.class, new HashedMap<>());
         _workflowUtils.addPostFunctionToTransition(allocateWF, "Available", "Pending Receive", "com.cmcglobal.jiraplugin.poc.POCService.available-property-post-function", AvailablePropertyPostFunction.class, new HashedMap<>());
         _workflowUtils.addPostFunctionToTransition(allocateWF, "Approve", "Pending Receive", "com.cmcglobal.jiraplugin.poc.POCService.available-property-post-function", AvailablePropertyPostFunction.class, new HashedMap<>());
 
@@ -101,24 +100,17 @@ public class WorkflowInstallation extends AbstractWorkflowInstallation {
         _workflowUtils.addPostFunctionToTransition(wForSubTaskPolicy, "Reject", "Rejected", "com.cmcglobal.jiraplugin.poc.POCService.reject-subtask-post-function", RejectSubtaskPostFunction.class, new HashedMap<>());
         _workflowUtils.addPostFunctionToTransition(wForSubTaskPolicy, "Approve", "Pending CEO Approve", "com.cmcglobal.jiraplugin.poc.POCService.change-assignee-post-function", ChangeAssigneePostFunction.class, new HashedMap<>());
 
-        _workflowUtils.addPostFunctionToTransition(wForSubTaskShopping, "Done", "Done", "com.cmcglobal.jiraplugin.poc.POCService.done-subtask-post-function", DoneSubtaskPostFunction.class, new HashedMap<>());
-        _workflowUtils.addPostFunctionToTransition(wForSubTaskShopping, "Seldom", "Pending Sign Contract", "com.cmcglobal.jiraplugin.poc.POCService.change-assignee-post-function", ChangeAssigneePostFunction.class, new HashedMap<>());
-        _workflowUtils.addPostFunctionToTransition(wForSubTaskShopping, "Approve", "Request Payment", "com.cmcglobal.jiraplugin.poc.POCService.change-assignee-post-function", ChangeAssigneePostFunction.class, new HashedMap<>());
-        _workflowUtils.addPostFunctionToTransition(wForSubTaskShopping, "Request Approve", "Pending Approve Request", "com.cmcglobal.jiraplugin.poc.POCService.change-assignee-post-function",
-                ChangeAssigneePostFunction.class, new HashMap<>());
-        _workflowUtils.addPostFunctionToTransition(wForSubTaskShopping, "Reject", "Request Payment", "com.cmcglobal.jiraplugin.poc.POCService.change-assignee-post-function",
-                ChangeAssigneePostFunction.class, new HashMap<String, Object>() {{
-                    put("toStep", "Reject");
-                }});
-        _workflowUtils.addPostFunctionToTransition(wForSubTaskShopping, "Approve", "Pending Payment", "com.cmcglobal.jiraplugin.poc.POCService.change-assignee-post-function", ChangeAssigneePostFunction.class, new HashedMap<String, Object>() {{
-            put("toStep", "Approve");
-        }});
         _workflowUtils.addPostFunctionToTransition(wForSubTaskReceive, "Delivered", "Pending Confirm", "com.cmcglobal.jiraplugin.poc.POCService.change-assignee-post-function", ChangeAssigneePostFunction.class, new HashedMap<>());
         _workflowUtils.addPostFunctionToTransition(wForSubTaskReceive, "Reject", "Pending Receive", "com.cmcglobal.jiraplugin.poc.POCService.change-assignee-post-function", ChangeAssigneePostFunction.class, new HashedMap<>());
         _workflowUtils.addPostFunctionToTransition(wForSubTaskReceive, "Confirm", "Done", "com.cmcglobal.jiraplugin.poc.POCService.change-assignee-post-function", ChangeAssigneePostFunction.class, new HashedMap<String, Object>() {{
             put("toStep", "Confirm");
         }});
-*/
+
+        _workflowUtils.addPostFunctionToTransition(paymentWF, "Approve", "Done", "com.cmcglobal.jiraplugin.poc.finish-payment-post-function", FinishPaymentPostFunction.class, new HashedMap<>());
+
+        _workflowUtils.addPostFunctionToTransition(shoppingWF, "Frequently", "Done", "com.cmcglobal.jiraplugin.poc.finish-payment-post-function", FinishShoppingPostFunction.class, new HashedMap<>());
+        _workflowUtils.addPostFunctionToTransition(shoppingWF, "Approve", "Done", "com.cmcglobal.jiraplugin.poc.finish-payment-post-function", FinishShoppingPostFunction.class, new HashedMap<>());
+        _workflowUtils.addPostFunctionToTransition(shoppingWF, "Seldom", "Pending Sign Contract", "com.cmcglobal.jiraplugin.poc.POCService.change-assignee-post-function", ChangeAssigneePostFunction.class, new HashedMap<>());
     }
 
 }

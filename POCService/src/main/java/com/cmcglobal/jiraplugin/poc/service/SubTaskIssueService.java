@@ -19,6 +19,7 @@ import com.atlassian.jira.user.util.UserManager;
 import com.cmcglobal.jiraplugin.poc.Constants;
 import com.cmcglobal.jiraplugin.poc.utils.IssueUtils;
 import com.cmcglobal.jiraplugin.poc.utils.UtilConstaints;
+import com.cmcglobal.jiraplugin.poc2.Constants2;
 import org.apache.log4j.Logger;
 
 import java.util.Map;
@@ -35,7 +36,7 @@ public class SubTaskIssueService {
     private IssueManager issueManager = ComponentAccessor.getIssueManager();
 
     public void createPolicySubTask(Issue parentIssue, Map<String, Object> map) throws Exception {
-        Project pocProject = projectManager.getProjectByCurrentKey(Constants.projectKey);
+        Project pocProject = projectManager.getProjectByCurrentKey(Constants2.projectKey);
         IssueType subPolicyType = issueUtils.getAllIssueType().stream().filter(e -> e.getName().equals(Constants.policyIssueTypeName)).findFirst().orElseGet(null);
         IssueInputParameters inputParameters = issueService.newIssueInputParameters();
         ApplicationUser assigneeUser = userManager.getUserByName((String) map.get("assignee"));
@@ -77,7 +78,7 @@ public class SubTaskIssueService {
     }
 
     public void createReceiveSubTask(Issue parentIssue, Map<String, Object> map) throws Exception {
-        Project pocProject = projectManager.getProjectByCurrentKey(Constants.projectKey);
+        Project pocProject = projectManager.getProjectByCurrentKey(Constants2.projectKey);
         IssueType subReceiveType = issueUtils.getAllIssueType().stream().filter(e -> e.getName().equals(Constants.receiveIssueTypeName)).findFirst().orElseGet(null);
         IssueInputParameters inputParameters = issueService.newIssueInputParameters();
         ApplicationUser assigneeUser = userManager.getUserByName((String) map.get("assignee"));
@@ -159,4 +160,48 @@ public class SubTaskIssueService {
             throw new Exception(String.format("unable create sub-task for %s. please contact to administrators for more information.", map.get("assignee")));
         }
     }
+
+    public void createIssue(IssueType issueType, Map<String, Object> map,ApplicationUser reporter) throws Exception {
+        Project poc2Project = projectManager.getProjectByCurrentKey(Constants2.projectKey);
+        IssueType paymentType = issueType;
+        IssueInputParameters inputParameters = issueService.newIssueInputParameters();
+        ApplicationUser assigneeUser = userManager.getUserByName((String) map.get("assignee"));
+        ApplicationUser admin = userManager.getUserByName(UtilConstaints.USERNAME);
+        if (assigneeUser == null)
+            throw new Exception(String.format("User %s - doesn't exists.", map.get("assignee")));
+        inputParameters.setReporterId(reporter.getUsername());
+        inputParameters.setProjectId(poc2Project.getId());
+        inputParameters.setIssueTypeId(paymentType.getId());
+        inputParameters.setSummary((String) map.get("summary"));
+        inputParameters.setAssigneeId(assigneeUser.getUsername());
+        IssueService.CreateValidationResult createValidationResult = issueService.validateCreate(admin, inputParameters);
+        if (createValidationResult.isValid()) {
+            IssueService.IssueResult result = issueService.create(admin, createValidationResult);
+            if (!result.isValid()) {
+                throw new Exception("unable create sub-task " + map.get("assignee"));
+            }
+            if (!result.isValid()) {
+                logger.error("start error.");
+                result.getErrorCollection().getReasons().forEach(reason -> logger.error(reason.toString()));
+                Map<String, String> errors = result.getErrorCollection().getErrors();
+                errors.keySet().forEach(key -> logger.error(String.format("%s --- %s", key, errors.get(key))));
+                result.getErrorCollection().getErrorMessages().forEach(message -> logger.error(message));
+                logger.error("end error.");
+            }
+            /*subTaskManager.createSubTaskIssueLink(parentIssue, result.getIssue(), admin);
+            MutableIssue subIssue = result.getIssue();
+            subIssue.setAssignee(assigneeUser);
+            issueManager.updateIssue(admin, subIssue, EventDispatchOption.ISSUE_ASSIGNED, false);*/
+        } else {
+            logger.error("start error.\n\n\n");
+            createValidationResult.getErrorCollection().getReasons().forEach(reason -> logger.error(reason.toString()));
+            Map<String, String> errors = createValidationResult.getErrorCollection().getErrors();
+            errors.keySet().forEach(key -> logger.error(String.format("%s --- %s", key, errors.get(key))));
+            createValidationResult.getErrorCollection().getErrorMessages().forEach(message -> logger.error(message));
+            logger.error("end error.\n\n\n");
+            throw new Exception(String.format("unable create sub-task for %s. please contact to administrators for more information.", map.get("assignee")));
+        }
+    }
+
+
 }
